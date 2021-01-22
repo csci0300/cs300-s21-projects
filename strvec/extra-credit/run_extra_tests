@@ -1,0 +1,30 @@
+#!/bin/bash
+FILES=$(ls encoding_tests/*)
+
+if [[ $# < 1 || ! ( $1 == "simple" || $1 == "stretch" ) ]]; then
+  echo "usage: run_extra_tests (simple|stretch)"
+  echo "  runs extra credit tests."
+  echo
+  echo "  simple: basic encoding tests"
+  echo "  stretch: compare full file(1) output"
+  exit 1
+fi
+
+for f in ${FILES}; do
+  echo -n "[TEST $f: "
+  OUT=$(./file $f)
+
+  if [[ $1 == "simple" ]]; then
+    FOUT=$(/usr/bin/file $f | grep -o -P "UTF-8|ASCII")
+  elif [[ $1 == "stretch" ]]; then
+    FOUT=$(/usr/bin/file $f)
+  fi
+
+  if [[ ${FOUT} == ${OUT} ]]; then
+    echo "PASSED!]"
+  else
+    echo "FAILED!]"
+    echo "  got: \"${OUT}\""
+    echo "  expected: \"${FOUT}\""
+  fi
+done
