@@ -16,6 +16,10 @@ for f in ${FILES}; do
 
   if [[ $1 == "simple" ]]; then
     FOUT=$(/usr/bin/file $f | grep -o -P "UTF-8|ASCII")
+    if [[ ${FOUT} == "" ]]; then
+      # expect "Undefined" when `file` doesn't return either ASCII or UTF-8
+      FOUT="Undefined"
+    fi
   elif [[ $1 == "stretch" ]]; then
     FOUT=$(/usr/bin/file $f)
   fi
