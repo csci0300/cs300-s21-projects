@@ -160,7 +160,7 @@ void foreach_test(int num_tests, char const* test_names[]) {
       run_test(&test_strchr, "strchr");
     else if (!cmp_str(test_name, "strtok"))
       run_test(&test_strtok, "strtok");
-    else if (!cmp_str(test_name, "mbslsn"))
+    else if (!cmp_str(test_name, "mbslen"))
       run_test(&test_mbslen, "mbslen");
     else if (sscanf(test_name, "%d", &dummy) != 1)
       printf("Unknown test: %s\n", test_name);
