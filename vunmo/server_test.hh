@@ -1,0 +1,4 @@
+#define N_WORKERS 5
+#define CLIENT_ID 123
+#define TARGET_CLIENT_ID 456
+#define DEPOSIT_AMOUNT 1000

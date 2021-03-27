@@ -1,0 +1,11 @@
+.idea
+.deps
+CMakeLists.txt
+cmake-build-debug
+*.o
+./client
+./server
+tests/*/*
+!tests/*
+!tests/*/*.cc
+tmp*
