@@ -1,0 +1,46 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+
+// represents keys in the range [lower, upper)
+message Shard {
+  uint32 lower = 1;
+  uint32 upper = 2;
+}
+
+message JoinRequest {
+  string server = 1;
+}
+
+message LeaveRequest {
+  repeated string servers = 1;
+}
+
+message MoveRequest {
+  string server = 1;
+  Shard shard = 2;
+}
+
+// all the shards on a server
+message ConfigEntry {
+  repeated Shard shards = 2;
+  string server = 3;
+}
+
+// information on all the groups
+message QueryResponse {
+  repeated ConfigEntry config = 1;
+}
+
+message GDPRDeleteRequest {
+  string key = 1;
+}
+
+// RPCs for shardmaster
+service Shardmaster {
+  rpc Join (JoinRequest) returns (google.protobuf.Empty) {}
+  rpc Leave (LeaveRequest) returns (google.protobuf.Empty) {}
+  rpc Move (MoveRequest) returns (google.protobuf.Empty) {}
+  rpc Query (google.protobuf.Empty) returns (QueryResponse) {}
+  rpc GDPRDelete (GDPRDeleteRequest) returns (google.protobuf.Empty) {}
+}

@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+// this protobuf contains the RPCs for the RG members - Get, Put, Append, Delete, and GDPR Delete 
+
+message GetRequest {
+    string key = 1;
+}
+
+message GetResponse {
+    string data = 1;
+}
+
+// if key is post_..., then check the user field for the associated user 
+message PutRequest {
+    string key = 1; 
+    string data = 2;
+    string user = 3; 
+}
+
+message AppendRequest {
+    string key = 1;
+    string data = 2;
+}
+
+message DeleteRequest {
+	string key = 1;
+}
+
+
+// RPCs for key-value server
+service Shardkv {
+    rpc Get (GetRequest) returns (GetResponse) {}
+    rpc Put (PutRequest) returns (google.protobuf.Empty) {}
+    rpc Append (AppendRequest) returns (google.protobuf.Empty) {}
+    rpc Delete (DeleteRequest) returns (google.protobuf.Empty) {}
+}
