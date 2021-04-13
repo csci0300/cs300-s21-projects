@@ -63,5 +63,5 @@ fi
 
 setup_grpc_deps && setup_threads && install_cmake && install_go && install_zlib && install_openssl && install_grpc
 
-wget -O shardkv-clients.tar.gz "https://cs.brown.edu/courses/csci1310/2020/assign/projects/assets/shardkv-clients.tar.gz" && \
+wget -O shardkv-clients.tar.gz "https://cs.brown.edu/courses/csci0300/2021/assign/projects/assets/shardkv-clients.tar.gz" && \
   tar -xzf shardkv-clients.tar.gz && rm shardkv-clients.tar.gz
