@@ -36,7 +36,7 @@ int main() {
   assert(test_append(skv_2, "user_7_posts", "post_1", true));
   assert(test_put(skv_2, "post_2", "abcd", "user_7", true));
   assert(test_append(skv_2, "user_7_posts", ", post_2", true));
-  assert(test_get(skv_2, "user_7_posts", "post1, post2"));
+  assert(test_get(skv_2, "user_7_posts", "post_1, post_2"));
 
 
   return 0;
