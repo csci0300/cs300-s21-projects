@@ -85,13 +85,27 @@ std::vector<std::string> split(const std::string& s) {
   return v;
 }
 
+std::vector<std::string> parse_value(std::string val, std::string delim) {
+  std::vector<std::string> tokens;
+
+  char *save;
+  char *tok = strtok_r((char *)val.c_str(), delim.c_str(), &save);
+  while(tok != NULL){
+    tokens.push_back(std::string(tok));
+    tok = strtok_r(NULL, delim.c_str(), &save);
+  }
+
+  return tokens;
+}
+
 int extractID(std::string key){
   std::vector<std::string> tokens;
 
-  char *tok = std::strtok((char *)key.c_str(), "_");
+  char *save;
+  char *tok = strtok_r((char *)key.c_str(), "_", &save);
   while(tok != NULL){
     tokens.push_back(std::string(tok));
-    tok = std::strtok(NULL, "_");
+    tok = strtok_r(NULL, "_", &save);
   }
   
   assert(tokens.size() > 1); //illformed key

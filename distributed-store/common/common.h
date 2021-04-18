@@ -72,6 +72,9 @@ OverlapStatus get_overlap(const shard_t& a, const shard_t& b);
 // utility function for splitting strings on whitespace
 std::vector<std::string> split(const std::string& s);
 
+// like split, but for an arbitrary delimiter
+std::vector<std::string> parse_value(std::string val, std::string delim);
+
 //extracts the ID number out of the key
 //you may find the utility helpful when implementing shardmaster
 int extractID(std::string key);
