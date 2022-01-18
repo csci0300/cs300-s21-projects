@@ -3,7 +3,7 @@ comma = ,
 export LC_ALL = C
 
 # Compiler toolchain
-CCPREFIX ?=
+CCPREFIX := $(shell build/findccprefix.sh)
 
 ifeq ($(CCPREFIX),)
 ifeq ($(origin CC),default)
@@ -14,7 +14,7 @@ CXX     := $(shell build/findgcc.sh $(CXX))
 endif
 else
 CC      = $(CCPREFIX)cc
-CXX     = $(CCPREFIX)c++
+CXX     = $(CCPREFIX)g++-9
 endif
 LD      = $(CCPREFIX)ld
 OBJCOPY = $(CCPREFIX)objcopy
